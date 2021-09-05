@@ -109,6 +109,8 @@ var showFormButton = document.querySelector('.show-form');
 var showNevermindButton = document.querySelector('.show-main');
 var showBackToMain = document.querySelector('.back-to-main');
 
+var showMyPosterButton = document.querySelector('.make-poster');
+
 // Main page poster
 var posterImg = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
@@ -118,6 +120,9 @@ var posterFormPage = document.querySelector('.poster-form');
 var mainPosterPage = document.querySelector('.main-poster');
 var savedPostersPage = document.querySelector('.saved-posters');
 
+var imageInput = document.querySelector('#poster-image-url');
+var titleInput = document.querySelector('#poster-title');
+var quoteInput = document.querySelector('#poster-quote');
 
 // event listeners go here 👇
 window.addEventListener('load', displayRandomPoster)
@@ -126,15 +131,23 @@ showFormButton.addEventListener('click', makeYourOwnPoster)
 showSavedButton.addEventListener('click', showSavedPosters)
 showNevermindButton.addEventListener('click', displayMainPage)
 showBackToMain.addEventListener('click', displayMainPage)
+showMyPosterButton.addEventListener('click', createYourOwn)
 
-//this function shows make your own poster that you created
-///this does not work!! event.preventDefault needs to go somewhere?
-function displayMyPoster() {
+function saveToArrays() {
+images.push(imageInput.value);
+titles.push(titleInput.value);
+quotes.push(quoteInput.value);
+}
+
+//this function shows make your own poster that you created and shows it on main page
+function createYourOwn() {
   event.preventDefault();
-  var makePoster = new Poster(imageURL, title, quote);
-  this.imageURL = imageURL.value;
-  this.title = title.value;
-  this.quote = quote.value;
+  currentPoster = new Poster(imageInput.value, titleInput.value, quoteInput.value);
+  displayMainPage();
+  posterImg.src = currentPoster.imageURL;
+  posterTitle.innerText = currentPoster.title;
+  posterQuote.innerText = currentPoster.quote;
+  saveToArrays();
 }
 
 //this function activates when the make your own button is pressed
