@@ -120,6 +120,9 @@ var posterFormPage = document.querySelector('.poster-form');
 var mainPosterPage = document.querySelector('.main-poster');
 var savedPostersPage = document.querySelector('.saved-posters');
 
+var imageInput = document.querySelector('#poster-image-url');
+var titleInput = document.querySelector('#poster-title');
+var quoteInput = document.querySelector('#poster-quote');
 
 // event listeners go here 👇
 window.addEventListener('load', displayRandomPoster)
@@ -129,27 +132,14 @@ showSavedButton.addEventListener('click', showSavedPosters)
 showNevermindButton.addEventListener('click', displayMainPage)
 showBackToMain.addEventListener('click', displayMainPage)
 showMyPosterButton.addEventListener('click', createYourOwn)
-// may need to change function tied to showMyPosterButton addEventListener
 
-//this function shows make your own poster that you created
-///this does not work!! event.preventDefault needs to go somewhere?
-// function createdPoster() {
-//   currentPoster = new Poster(imageURL, title, quote);
-//
-// }
-var imageInput = document.querySelector('#poster-image-url');
-var titleInput = document.querySelector('#poster-title');
-var quoteInput = document.querySelector('#poster-quote');
+function saveToArrays() {
+images.push(imageInput.value);
+titles.push(titleInput.value);
+quotes.push(quoteInput.value);
+}
 
-
-// function displayMyPoster() {
-//   displayMainPage();
-//  posterImg.src = currentPoster.imageURL;
-//  posterTitle.innerText = currentPoster.title;
-//  posterQuote.innerText = currentPoster.quote;
-// }
-
-
+//this function shows make your own poster that you created and shows it on main page
 function createYourOwn() {
   event.preventDefault();
   currentPoster = new Poster(imageInput.value, titleInput.value, quoteInput.value);
@@ -157,6 +147,7 @@ function createYourOwn() {
   posterImg.src = currentPoster.imageURL;
   posterTitle.innerText = currentPoster.title;
   posterQuote.innerText = currentPoster.quote;
+  saveToArrays();
 }
 
 //this function activates when the make your own button is pressed
