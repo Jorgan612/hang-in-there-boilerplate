@@ -119,7 +119,6 @@ var mainPosterPage = document.querySelector('.main-poster');
 var savedPostersPage = document.querySelector('.saved-posters');
 
 
-
 // event listeners go here 👇
 window.addEventListener('load', displayRandomPoster)
 showRandomButton.addEventListener('click', displayRandomPoster)
@@ -127,6 +126,16 @@ showFormButton.addEventListener('click', makeYourOwnPoster)
 showSavedButton.addEventListener('click', showSavedPosters)
 showNevermindButton.addEventListener('click', displayMainPage)
 showBackToMain.addEventListener('click', displayMainPage)
+
+//this function shows make your own poster that you created
+///this does not work!! event.preventDefault needs to go somewhere?
+function displayMyPoster() {
+  event.preventDefault();
+  var makePoster = new Poster(imageURL, title, quote);
+  this.imageURL = imageURL.value;
+  this.title = title.value;
+  this.quote = quote.value;
+}
 
 //this function activates when the make your own button is pressed
 function makeYourOwnPoster() {
@@ -155,3 +164,6 @@ function displayRandomPoster() {
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
+//iteration 2 bullet 1.
+// make querySelector for show my poster button, addEventListener and
+//tie it to the displayMyPoster function.
