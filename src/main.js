@@ -109,6 +109,8 @@ var showFormButton = document.querySelector('.show-form');
 var showNevermindButton = document.querySelector('.show-main');
 var showBackToMain = document.querySelector('.back-to-main');
 
+var showMyPosterButton = document.querySelector('.make-poster');
+
 // Main page poster
 var posterImg = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
@@ -126,15 +128,35 @@ showFormButton.addEventListener('click', makeYourOwnPoster)
 showSavedButton.addEventListener('click', showSavedPosters)
 showNevermindButton.addEventListener('click', displayMainPage)
 showBackToMain.addEventListener('click', displayMainPage)
+showMyPosterButton.addEventListener('click', createYourOwn)
+// may need to change function tied to showMyPosterButton addEventListener
 
 //this function shows make your own poster that you created
 ///this does not work!! event.preventDefault needs to go somewhere?
-function displayMyPoster() {
+// function createdPoster() {
+//   currentPoster = new Poster(imageURL, title, quote);
+//
+// }
+var imageInput = document.querySelector('#poster-image-url');
+var titleInput = document.querySelector('#poster-title');
+var quoteInput = document.querySelector('#poster-quote');
+
+
+// function displayMyPoster() {
+//   displayMainPage();
+//  posterImg.src = currentPoster.imageURL;
+//  posterTitle.innerText = currentPoster.title;
+//  posterQuote.innerText = currentPoster.quote;
+// }
+
+
+function createYourOwn() {
   event.preventDefault();
-  var makePoster = new Poster(imageURL, title, quote);
-  this.imageURL = imageURL.value;
-  this.title = title.value;
-  this.quote = quote.value;
+  currentPoster = new Poster(imageInput.value, titleInput.value, quoteInput.value);
+  displayMainPage();
+  posterImg.src = currentPoster.imageURL;
+  posterTitle.innerText = currentPoster.title;
+  posterQuote.innerText = currentPoster.quote;
 }
 
 //this function activates when the make your own button is pressed
