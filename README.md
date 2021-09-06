@@ -6,7 +6,6 @@ Mod 1 Hang in There Boilerplate
 ## Table of Contents
   - [Abstract](#abstract)
   - [Technologies](#technologies)
-  - [Illustrations](#illustrations)
   - [Contributors](#contributors)
 	- [Wins](#wins)
 	- [Challenges + Improvements](#challenges-+-Improvements)
@@ -21,9 +20,6 @@ Mod 1 Hang in There Boilerplate
 ## Technologies
   - Javascript
   - Atom
-
-## Illustrations
-
 
 ## Contributors
   - [Jessica Organ](https://github.com/Jorgan612)
