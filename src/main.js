@@ -111,6 +111,7 @@ var showBackToMain = document.querySelector('.back-to-main');
 
 var showMyPosterButton = document.querySelector('.make-poster');
 
+
 // Main page poster
 var posterImg = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
@@ -124,6 +125,8 @@ var imageInput = document.querySelector('#poster-image-url');
 var titleInput = document.querySelector('#poster-title');
 var quoteInput = document.querySelector('#poster-quote');
 
+var savedPostersCard = document.querySelector('.saved-posters-grid');
+
 // event listeners go here 👇
 window.addEventListener('load', displayRandomPoster)
 showRandomButton.addEventListener('click', displayRandomPoster)
@@ -132,7 +135,28 @@ showSavedButton.addEventListener('click', showSavedPosters)
 showNevermindButton.addEventListener('click', displayMainPage)
 showBackToMain.addEventListener('click', displayMainPage)
 showMyPosterButton.addEventListener('click', createYourOwn)
+savePosterButton.addEventListener('click', addToSaved)
 
+
+function addNewPosterGrid() {
+  savedPostersCard.innerHTML = '';
+  for (var i = 0; i < savedPosters.length; i++) {
+    savedPostersCard.innerHTML += `
+      <article class="mini-poster">
+        <img src=${savedPosters[i].imageURL}>
+        <h2>${savedPosters[i].title}</h2>
+        <h4>${savedPosters[i].quote}</h4>
+      </article>`
+  }
+}
+
+function addToSaved() {
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster)
+  }
+}
+
+//pushes form input into existing arrays
 function saveToArrays() {
 images.push(imageInput.value);
 titles.push(titleInput.value);
@@ -159,6 +183,7 @@ function makeYourOwnPoster() {
 function showSavedPosters() {
   mainPosterPage.classList.add('hidden');
   savedPostersPage.classList.remove('hidden');
+  addNewPosterGrid()
 }
 function displayMainPage() {
   mainPosterPage.classList.remove('hidden');
@@ -167,9 +192,10 @@ function displayMainPage() {
 }
 
 function displayRandomPoster() {
-  posterImg.src = images[getRandomIndex(images)];
-  posterTitle.innerText = titles[getRandomIndex(titles)];
-  posterQuote.innerText = quotes[getRandomIndex(quotes)];
+  currentPoster = new Poster(images[getRandomIndex(images)], titles[getRandomIndex(titles)], quotes[getRandomIndex(quotes)])
+  posterImg.src = currentPoster.imageURL;
+  posterTitle.innerText = currentPoster.title;
+  posterQuote.innerText = currentPoster.quote;
 }
 
 // functions and event handlers go here 👇
